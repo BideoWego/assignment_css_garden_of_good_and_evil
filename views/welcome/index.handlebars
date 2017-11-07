@@ -1,1 +1,76 @@
-<h1>Hello Express!</h1>
+
+
+<header class="page-header">
+  <h1>Viking CSS Garden of Good and Evil</h1>
+</header>
+
+
+<form action="/" method="post">
+  <div class="form-group">
+    <strong>Morality</strong>
+    <div class="radio">
+      <label for="morality_good">
+        <input
+          type="radio"
+          name="morality"
+          id="morality_good"
+          value="good"
+          {{#if (eq morality "good") }}checked{{/if }}> Good
+      </label>
+    </div>
+    <div class="radio">
+      <label for="morality_evil">
+        <input
+          type="radio"
+          name="morality"
+          id="morality_evil"
+          value="evil"
+          {{#if (eq morality "evil") }}checked{{/if }}> Evil
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="favorite_food">Favorite Food</label>
+    <input
+      type="text"
+      id="favorite_food"
+      name="favorite_food"
+      class="form-control"
+      {{#if favoriteFood }}value="{{ favoriteFood }}"{{/if }}>
+  </div>
+  <div class="form-group">
+    <label for="favorite_color">Favorite Color</label>
+    <select name="favorite_color" id="favorite_color" class="form-control">
+      {{#each colors as |color| }}
+        <option
+          value="{{ color }}"
+          {{#if (eq ../favoriteColor color) }}selected{{/if }}>{{ color }}</option>
+      {{/each }}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="insanity_level">Insanity Level</label>
+    <input type="range" name="insanity_level" id="insanity_level" min="0" max="5" step="1" value="{{ insanityLevel }}">
+  </div>
+  <div class="form-group">
+    <input type="submit" class="btn btn-primary">
+  </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

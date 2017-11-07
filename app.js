@@ -81,8 +81,40 @@ app.use(morganToolkit());
 // ----------------------------------------
 // Routes
 // ----------------------------------------
-app.use('/', (req, res) => {
-  res.render('welcome/index');
+const fields = {
+  morality: 'good',
+  favoriteFood: 'bananas',
+  favoriteColor: 'red',
+  insanityLevel: 0
+};
+const colors = ['red', 'blue', 'green'];
+
+
+app.get('/', (req, res) => {
+
+  const locals = {};
+  Object.keys(fields).forEach(key => {
+    locals[key] = req.session[key] || fields[key];
+  });
+  locals.colors = colors;
+  res.render('welcome/index', locals);
+});
+
+
+app.post('/', (req, res) => {
+  const {
+    morality,
+    favorite_food: favoriteFood,
+    favorite_color: favoriteColor,
+    insanity_level: insanityLevel
+  } = req.body;
+
+  req.session.morality = morality;
+  req.session.favoriteFood = favoriteFood;
+  req.session.favoriteColor = favoriteColor;
+  req.session.insanityLevel = insanityLevel;
+
+  res.redirect('/');
 });
 
 
