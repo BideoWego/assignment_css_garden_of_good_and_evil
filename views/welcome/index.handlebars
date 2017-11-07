@@ -1,10 +1,11 @@
 
-
+{{!-- Header --}}
 <header class="page-header">
   <h1>Viking CSS Garden of Good and Evil</h1>
 </header>
 
 
+{{!-- Form --}}
 <form action="/" method="post">
   <div class="form-group">
     <strong>Morality</strong>
@@ -50,14 +51,99 @@
   </div>
   <div class="form-group">
     <label for="insanity_level">Insanity Level</label>
-    <input type="range" name="insanity_level" id="insanity_level" min="0" max="5" step="1" value="{{ insanityLevel }}">
+    <input type="range" name="insanity_level" id="insanity_level" min="0" max="3" step="1" value="{{ insanityLevel }}">
   </div>
   <div class="form-group">
     <input type="submit" class="btn btn-primary">
+    <a href="/reset" class="btn btn-danger">Reset</a>
   </div>
 </form>
 
 
+{{!-- Content --}}
+<div id="contextual" class="{{ contextualClasses }}">
+
+  {{!-- Likes/Dislikes --}}
+  <div class="row">
+    <div class="col-md-6 likes">
+      <header class="page-header">
+        <h2>Likes</h2>
+      </header>
+      <ul class="list-group">
+        {{#each preferences.likes as |like| }}
+          <li class="list-group-item">{{ like }}</li>
+        {{/each }}
+      </ul>
+    </div>
+
+    <div class="col-md-6 dislikes">
+      <header class="page-header">
+        <h2>Dislikes</h2>
+      </header>
+      <ul class="list-group">
+        {{#each preferences.dislikes as |dislike| }}
+          <li class="list-group-item">{{ dislike }}</li>
+        {{/each }}
+      </ul>
+    </div>
+  </div>
+
+  {{!-- Biography --}}
+  <div class="row">
+    <div class="col-md-12 biography">
+      <header class="page-header">
+        <h2>Biography</h2>
+      </header>
+      {{#if (eq morality "good") }}
+      <p>
+        Mickey Mouse is one of the most recognizable cartoon characters ever. He is the leader of the Disney toons and the mascot for the Walt Disney company.
+      </p>
+
+      <p>
+        Born on 18th November, 1928, his very first cartoon was "Steamboat Willie", where he drove a steamboat and faced who would become his worst enemy, Pete.
+      </p>
+      {{else }}
+        <p>
+          Elmer Fudd began life as a very different character called Egghead, whom Tex Avery created as a bizarre figure with an egg-shaped head, a squat body and a long, bulbous nose. His voice, provided by Cliff Nazarro, was patterned after the radio comedian Joe Penner. Before Egghead underwent his complete transformation, Mel Blanc briefly provided his voice, dropping the Penner-like intonations. Egghead first had the name "Elmer Fudd" in A Feud There Was (1938).
+        </p>
+
+        <p>
+          Chuck Jones and his team redesigned him for Elmer's Candid Camera (1940) as a more human-like character and cast Arthur Q. Bryan to provide his babyish voice, which made ls and rs sounds like ws.
+        </p>
+      {{/if }}
+    </div>
+  </div>
+
+  {{!-- Resume --}}
+  <div class="row">
+    <div class="col-md-12">
+      <header class="page-header">
+        <h2>Resume</h2>
+      </header>
+
+      {{#if (eq morality "good") }}
+        <h3>Objective</h3>
+        <p>To give mansons to all the homeless kittens out there.</p>
+
+        <h3>Education</h3>
+        <p>Havard School of Kittens</p>
+
+        <h3>Experience</h3>
+        <a class="btn btn-primary" href="http://cashcats.biz/">=^.^=</a>
+      {{else }}
+        <h3>Objective</h3>
+        <p>To give the homeless kittens to all the homeless dogs out there.</p>
+
+        <h3>Education</h3>
+        <p>Havard School of World Domination</p>
+
+        <h3>Experience</h3>
+        <a class="btn btn-danger" href="https://en.wikipedia.org/wiki/Pinky_and_the_Brain">>:)</a>
+      {{/if }}
+    </div>
+  </div>
+
+</div>
 
 
 

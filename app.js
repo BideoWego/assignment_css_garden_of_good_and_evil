@@ -81,21 +81,21 @@ app.use(morganToolkit());
 // ----------------------------------------
 // Routes
 // ----------------------------------------
-const fields = {
-  morality: 'good',
-  favoriteFood: 'bananas',
-  favoriteColor: 'red',
-  insanityLevel: 0
-};
-const colors = ['red', 'blue', 'green'];
+const fields = require('./models/fields');
+const colors = require('./models/colors');
+const preferences = require('./models/preferences');
+const contextualClasses = require('./models/contextual_classes');
 
 
 app.get('/', (req, res) => {
-
   const locals = {};
+
   Object.keys(fields).forEach(key => {
     locals[key] = req.session[key] || fields[key];
   });
+
+  locals.contextualClasses = contextualClasses(locals);
+  locals.preferences = preferences[req.session.insanityLevel];
   locals.colors = colors;
   res.render('welcome/index', locals);
 });
@@ -114,6 +114,14 @@ app.post('/', (req, res) => {
   req.session.favoriteColor = favoriteColor;
   req.session.insanityLevel = insanityLevel;
 
+  res.redirect('/');
+});
+
+
+app.get('/reset', (req, res) => {
+  Object.keys(fields).forEach(key => {
+    req.session[key] = fields[key];
+  });
   res.redirect('/');
 });
 

@@ -25,7 +25,6 @@ UtilsHelper.json = (obj) => {
 
 
 UtilsHelper.eq = (a, b) => {
-  console.log(a, b);
   return a == b;
 };
 

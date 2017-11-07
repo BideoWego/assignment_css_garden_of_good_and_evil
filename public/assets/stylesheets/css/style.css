@@ -1,0 +1,39 @@
+
+
+
+#contextual.good {
+  color: darkgreen;
+}
+
+#contextual.evil {
+  color: darkred;
+}
+
+
+#contextual.bananas {
+  background: url("/assets/images/banana.png");
+}
+
+#contextual.strawberries {
+  background: url("/assets/images/strawberry.png");
+}
+
+
+#contextual.red h2 {
+  color: red;
+}
+
+#contextual.blue h2 {
+  color: blue;
+}
+
+#contextual.green h2 {
+  color: green;
+}
+
+
+
+
+
+
+
